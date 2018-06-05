@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JDBCStatementCreateExample {
+public class JDBCStatementCreate {
 
 	private static final String DB_DRIVER = "org.postgresql.Driver";
 	private static final String DB_CONNECTION = "jdbc:postgresql://localhost:5432/postgres";
@@ -31,14 +31,15 @@ public class JDBCStatementCreateExample {
 		Connection dbConnection = null;
 		Statement statement = null;
 
-//		String createTableSQL = "CREATE TABLE TASK("
-//				+ "TASK_ID VARCHAR(20) NOT NULL, "
-//				+ "SKILL VARCHAR(20) "+ "PRIMARY KEY (TASK_ID) "
-//				+ ")";
-//		String createTableSQL = "CREATE TABLE TEAM("
+		String createTaskTableSQL = "CREATE TABLE TASK("
+				+ "TASK_ID VARCHAR(20) NOT NULL, "
+				+ "SKILL VARCHAR(20) "
+				+ ")";
+		
+//		String createTeamTableSQL = "CREATE TABLE TEAM("
 //				+ "TEAM_ID VARCHAR(20) NOT NULL, "+ "PRIMARY KEY (TEAM_ID) "
 //				+ ")";
-		String createTableSQL = "CREATE TABLE TEAM_SKILL("
+		String createTeamSkillTableSQL = "CREATE TABLE TEAM_SKILL("
 				+ "TEAM_ID VARCHAR(20) NOT NULL, "
 				+ "SKILL VARCHAR(20) "
 				+ ")";
@@ -47,11 +48,13 @@ public class JDBCStatementCreateExample {
 			dbConnection = getDBConnection();
 			statement = dbConnection.createStatement();
 
-			System.out.println(createTableSQL);
-                        // execute the SQL stetement
-			statement.execute(createTableSQL);
+			statement.execute(createTaskTableSQL);
+			
+//			statement.execute(createTeamTableSQL);
+//			
+//			statement.execute(createTeamSkillTableSQL);
 
-			System.out.println("Table \"dbuser\" is created!");
+			System.out.println("Tables created!");
 
 		} catch (SQLException e) {
 
